@@ -18,12 +18,13 @@
                 background-blend-mode: lighten;
             }
             .survey-form {
-                background-color: ghostwhite;
+                background: ghostwhite;
                 width: 500px;
+                margin: 20px;
                 padding: 20px;
-                border: 20x slategray;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                border: 20px slategray;
+                border-radius: 10px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
             label, input, select, textarea {
             display: block;
@@ -33,19 +34,19 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .star-rating {
+            .star-rating {
             display: flex;
-            gap: 5px;
             flex-direction: row-reverse;
+            justify-content: center;
+            margin-top: 5px;
         }
 
         .star-rating label {
             font-size: 30px;
             color: lightgray; 
             cursor: pointer;
-            justify-content: center;
-            align-items: center;
             border: none;
+            transition: color 0.2s;
             
         }
 
@@ -53,7 +54,9 @@
             display: none;
         } 
 
-        .star-rating input[type="radio"]:checked ~ label {
+        .star-rating input[type="radio"]:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
             color: gold; 
         }
 
@@ -100,102 +103,116 @@
             margin-right: 10px;
         }
 
-        
+        @media (max-width: 600px) {
+            .survey-form {
+            width: 90%;
+            padding: 10px;
+            }
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgba(34, 139, 34, 1);
+            color: white; 
+            cursor: pointer;
+        }
         </style>
     </head>
     <body>
-        <div class="survey-form">
-            <form action="#" method="post">
-            <h1 style="text-align: center; margin-bottom: 20px;">Classroom Survey Form</h1>
-            <h2>Student Information</h2>
-            <label for="sname">Enter your name: </label>
-            <input type="text" id="sname" value="" placeholder="Name" style="width: 96%;">
-            <label for="gs">Grade & Section: </label>
-            <select id="gs" name="Grade & Section" style="width: 98.5%;">
-                <option value="Grade 7-A">Grade 7-A</option>
-                <option value="Grade 8-B">Grade 8-B</option>
-            </select>
-            <h2>Feedback</h2>
-            <label for="subject">Subject</label>
-            <select id="subject" name="Subject" style="width: 98.5%;">
-                <option value="Math">Math</option>
-                <option value="Science">Science</option>
-                <option value="English">English</option>
-            </select>
+        <form>
+            <div class="survey-form">
+                <form action="#" method="post">
+                <h1 style="text-align: center; margin-bottom: 20px;">Classroom Survey Form</h1>
+                <h2>Student Information</h2>
+                <label for="sname">Enter your name: </label>
+                <input type="text" id="sname" value="" placeholder="Name" style="width: 96%;" required>
+                <label for="gs">Grade & Section: </label>
+                <select id="gs" name="Grade & Section" style="width: 98.5%;" required>
+                    <option value="Grade 7-A">Grade 7-A</option>
+                    <option value="Grade 8-B">Grade 8-B</option>
+                </select>
+                <h2>Feedback</h2>
+                <label for="subject">Subject</label>
+                <select id="subject" name="Subject" style="width: 98.5%;">
+                    <option value="Math">Math</option>
+                    <option value="Science">Science</option>
+                    <option value="English">English</option>
+                </select>
+    
+                <label for="favorite">Favorite Lesson: </label>
+                <input type="text" id="favlesson" name="fav" value="" placeholder="Favorite Lesson" style="width: 96%;">
+                
+                <h2>Teacher Rating</h2>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5">
+                    <label for="star5">★</label>
+                
+                    <input type="radio" id="star4" name="rating" value="4">
+                    <label for="star4">★</label>
+                
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3">★</label>
+                
+                    <input type="radio" id="star2" name="rating" value="2">
+                    <label for="star2">★</label>
+                
+                    <input type="radio" id="star1" name="rating" value="1">
+                    <label for="star1">★</label>
+                </div>
+    
+                <label for="suggestion">Suggestions for Improvement</label>
+                <textarea id="suggestion" name="suggestion" rows="6" cols="50" style="resize: none;" placeholder="What would make your learning experience better?"></textarea>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="anonym" name="anonym">
+                    <label for="anonym">Anonymous Submission</label>
+                </div>
 
-            <label for="favorite">Favorite Lesson: </label>
-            <input type="text" id="favlesson" name="fav" value="" placeholder="Favorite Lesson" style="width: 96%;">
-            
-            <h2>Teacher Rating</h2>
-            <div class="star-rating">
-                <input type="radio" id="star1" name="rating" value="1">
-                <label for="star1">★</label>
-            
-                <input type="radio" id="star2" name="rating" value="2">
-                <label for="star2">★</label>
-            
-                <input type="radio" id="star3" name="rating" value="3">
-                <label for="star3">★</label>
-            
-                <input type="radio" id="star4" name="rating" value="4">
-                <label for="star4">★</label>
-            
-                <input type="radio" id="star5" name="rating" value="5">
-                <label for="star5">★</label>
-            </div>
-
-            <label for="suggestion">Suggestions for Improvement</label>
-            <textarea id="suggestion" name="suggestion" rows="6" cols="50" style="resize: none;" placeholder="Enter your suggestions here"></textarea>
-            <div class="checkbox-container">
-                <input type="checkbox" id="anonym" name="anonym">
-                <label for="anonym">Anonymous Submission</label>
-            </div>
-
-                <input type="submit"  id="submit" name="Submit" value="Submit" style="width: 25%">
-            
-            <table>
-                <thead>
+                    <input type="submit"  id="submit" name="Submit" value="Submit" style="width: 100px;">
+                    
+                <h2>Survey Results</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Grade & Section</th>
+                            <th>
+                                Subject 
+                                <select id="subject" name="Subject" style="width: 98.5%;">
+                                        <option value="Math">Math</option>
+                                        <option value="Science">Science</option>
+                                     <option value="English">English</option>
+                                </select>
+                            </th>
+                            <th>Favorite Lesson</th>
+                            <th>Teacher Rating</th>
+                            <th>Suggestions for Improvement</th>
+                        </tr>
+                    </thead>
                     <tr>
-                        <th>Student Name</th>
-                        <th>Grade & Section</th>
-                        <th>
-                            Subject 
-                            <select id="subject" name="Subject" style="width: 98.5%;">
-                                    <option value="Math">Math</option>
-                                    <option value="Science">Science</option>
-                                 <option value="English">English</option>
-                            </select>
-                        </th>
-                        <th>Favorite Lesson</th>
-                        <th>Teacher Rating</th>
-                        <th>Suggestions for Improvement</th>
+                        <th>Klydle</th>
+                        <th>Grade 7-A</th>
+                        <th>Math</th>
+                        <th>None</th>
+                        <th></th>
+                        <th></th>
                     </tr>
-                </thead>
-                <tr>
-                    <th>Klydle</th>
-                    <th>Grade 7-A</th>
-                    <th>Math</th>
-                    <th>None</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>Beatriz</th>
-                    <th>Grade 7-A</th>
-                    <th>Science</th>
-                    <th>None</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>Trisha</th>
-                    <th>Grade 7-A</th>
-                    <th>English</th>
-                    <th>None</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </table>
-        </div>
+                    <tr>
+                        <th>Beatriz</th>
+                        <th>Grade 7-A</th>
+                        <th>Science</th>
+                        <th>None</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Trisha</th>
+                        <th>Grade 7-A</th>
+                        <th>English</th>
+                        <th>None</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+        </form>
     </body>
 </html>
